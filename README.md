@@ -1,4 +1,4 @@
-# IT-Kamianets 3D Engine — Unity Spatial
+# IT-Kamianets 3D Engine: Unity Spatial
 
 `3d-unity-spatial` connects the **IT-Kamianets 3D Engine** with real physical environments.
 
