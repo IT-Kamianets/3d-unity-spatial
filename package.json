@@ -1,0 +1,20 @@
+{
+  "name": "com.itkamianets.3d-unity-spatial",
+  "version": "0.1.0",
+  "displayName": "IT-Kamianets 3D Engine: Unity Spatial",
+  "description": "Converts a Meta Quest room scan (MR Utility Kit) into a 3d-scene-schema SceneData. Requires the Meta XR MR Utility Kit package (com.meta.xr.mrutilitykit) to be installed in the consuming project; compiles to a no-op without it.",
+  "unity": "6000.6",
+  "license": "MIT",
+  "author": {
+    "name": "IT Kamianets"
+  },
+  "keywords": [
+    "3d-engine",
+    "it-kamianets",
+    "meta-quest"
+  ],
+  "dependencies": {
+    "com.itkamianets.3d-unity-core": "0.1.0",
+    "com.itkamianets.3d-unity-scene": "0.1.0"
+  }
+}

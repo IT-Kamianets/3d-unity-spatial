@@ -1,0 +1,25 @@
+{
+    "name": "ITKamianets.Engine.Spatial",
+    "rootNamespace": "ITKamianets.Engine.Spatial",
+    "references": [
+        "ITKamianets.Engine.Core",
+        "ITKamianets.Engine.Scene",
+        "Unity.Newtonsoft.Json",
+        "Meta.XR.MRUtilityKit"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [
+        {
+            "name": "com.meta.xr.mrutilitykit",
+            "expression": "",
+            "define": "MRUK_PRESENT"
+        }
+    ],
+    "noEngineReferences": false
+}

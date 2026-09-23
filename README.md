@@ -12,6 +12,14 @@ The resulting spatial information should be converted into engine-independent sc
 
 For VRoom, this package can be used to turn a real room into the initial digital scene.
 
+### Status (version A)
+
+`Runtime/RoomScanner.cs` requests the Quest Scene API permission, loads the current room via MR Utility Kit, and converts it into a `SceneData` (from `3d-unity-scene`) via `MrukLabelMap`. One `MRUKRoom` → one `SceneData`; no multi-room splitting, no rescan/compare, no loading a `SceneData` back into MRUK -- version A is scan-and-upload only (see `vroom-scanner`'s roadmap for what's deferred).
+
+Compiles to a no-op (`ScanFailed` fires with an explanatory message) if the Meta XR MR Utility Kit package (`com.meta.xr.mrutilitykit`) isn't installed in the consuming project -- this package doesn't hard-depend on it, since it isn't reliably resolvable as a plain `package.json` dependency the way `3d-unity-core`/`3d-unity-scene` are.
+
+This was written against the MRUK API as commonly documented, but not verified against a live installed SDK version in the Editor -- expect to adjust member names if the Unity Editor reports compile errors here.
+
 ### Roadmap
 
 * Meta Quest Scene API integration
