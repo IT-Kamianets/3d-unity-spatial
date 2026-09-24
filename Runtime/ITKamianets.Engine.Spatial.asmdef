@@ -4,7 +4,6 @@
     "references": [
         "ITKamianets.Engine.Core",
         "ITKamianets.Engine.Scene",
-        "Unity.Newtonsoft.Json",
         "Meta.XR.MRUtilityKit"
     ],
     "includePlatforms": [],
