@@ -4,7 +4,7 @@
     "references": [
         "ITKamianets.Engine.Core",
         "ITKamianets.Engine.Scene",
-        "Meta.XR.MRUtilityKit"
+        "meta.xr.mrutilitykit"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
