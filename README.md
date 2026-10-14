@@ -12,13 +12,15 @@ The resulting spatial information should be converted into engine-independent sc
 
 For VRoom, this package can be used to turn a real room into the initial digital scene.
 
-### Status (version A)
+### Status
 
-`Runtime/RoomScanner.cs` requests the Quest Scene API permission, loads the current room via MR Utility Kit, and converts it into a `SceneData` (from `3d-unity-scene`) via `MrukLabelMap`. One `MRUKRoom` → one `SceneData`; no multi-room splitting, no rescan/compare, no loading a `SceneData` back into MRUK -- version A is scan-and-upload only (see `vroom-scanner`'s roadmap for what's deferred).
+Version 0.1.
 
-Compiles to a no-op (`ScanFailed` fires with an explanatory message) if the Meta XR MR Utility Kit package (`com.meta.xr.mrutilitykit`) isn't installed in the consuming project -- this package doesn't hard-depend on it, since it isn't reliably resolvable as a plain `package.json` dependency the way `3d-unity-core`/`3d-unity-scene` are.
+* `RoomScanner` (Meta Quest, needs the MR Utility Kit package `com.meta.xr.mrutilitykit`): requests the Scene API permission, loads the current room through MRUK, and converts it into a `SceneData` (from `3d-unity-scene`) via `MrukLabelMap`. One `MRUKRoom` → one `SceneData`. Without MRUK it compiles to a no-op (`ScanFailed` explains why). Written against the MRUK API as documented and compiled without the SDK: on-device checks are still to do.
+* `RoomMetrics.Measure(scene)`: floor area, ceiling height, overall bounds, and counts of walls, doors, windows and detected objects, from any scan in 3d-scene-schema form (no headset needed, e.g. a scan stored in Firebase).
+* `RoomLoader.Load(scene)`: builds a scanned room as solid, visible geometry through `SceneLoader` (invisible walls collide but are not drawn), and `FloorHeight` to stand a player on it.
 
-This was written against the MRUK API as commonly documented, but not verified against a live installed SDK version in the Editor -- expect to adjust member names if the Unity Editor reports compile errors here.
+Checked in Play mode with `3d-scene-schema`'s room-scan example (no MRUK): 30 m² floor, 2.7 m ceiling, 1 wall, 1 door, 1 window, built with 5 colliders. Compiles without warnings when MRUK is not installed.
 
 ### Roadmap
 
@@ -33,10 +35,8 @@ This was written against the MRUK API as commonly documented, but not verified a
 * Physical object detection
 * Room boundaries
 * Spatial anchors
-* Room dimensions
 * Surface classification
 * Spatial mesh support
-* Convert scanned rooms into `3d-scene-schema`
 * Save/load scanned environments
 * Rescan/update environment
 * Alignment between virtual and physical scenes

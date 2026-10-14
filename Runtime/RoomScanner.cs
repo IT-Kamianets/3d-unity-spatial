@@ -29,7 +29,13 @@ namespace ITKamianets.Engine.Spatial
     {
         private const string ScenePermission = "com.oculus.permission.USE_SCENE";
 
+#if !MRUK_PRESENT
+#pragma warning disable CS0067 // Raised only when the MR Utility Kit is installed.
+#endif
         public event Action<SceneData> ScanCompleted;
+#if !MRUK_PRESENT
+#pragma warning restore CS0067
+#endif
         public event Action<string> ScanFailed;
 
         public void StartScan()
@@ -120,10 +126,14 @@ namespace ITKamianets.Engine.Spatial
             if (anchor.VolumeBounds.HasValue)
             {
                 var bounds = anchor.VolumeBounds.Value;
+
+                // Flipping z for the schema swaps which corner is smaller; keep min <= max.
+                var a = CoordinateConversion.ToSchema(bounds.min);
+                var b = CoordinateConversion.ToSchema(bounds.max);
                 sceneObject.Volume = new BoundsData
                 {
-                    Min = CoordinateConversion.ToSchema(bounds.min),
-                    Max = CoordinateConversion.ToSchema(bounds.max)
+                    Min = new Vector3Data(System.Math.Min(a.X, b.X), System.Math.Min(a.Y, b.Y), System.Math.Min(a.Z, b.Z)),
+                    Max = new Vector3Data(System.Math.Max(a.X, b.X), System.Math.Max(a.Y, b.Y), System.Math.Max(a.Z, b.Z))
                 };
             }
 
